@@ -1,0 +1,50 @@
+<apex:page showHeader="true" controller="AccountManagerController">
+	
+    <!-- this is just like a loop - iterating -->
+
+    <apex:outputPanel id="messages">
+        <apex:pageMessages />
+    </apex:outputPanel>
+    
+    <apex:form >
+
+        <apex:pageBlock title="create account">
+
+            <apex:commandButton action="{!createAccounts}" value="Create Account" reRender="theTable,messages" />
+
+                <apex:pageBlockSection title="Create new Account" columns="1">
+
+                    <apex:inputField value="{!activeAccount.Name}"/>
+                    <apex:inputField value="{!activeAccount.Type}"/>
+
+                </apex:pageBlockSection>
+
+        </apex:pageBlock> 
+
+    </apex:form>     
+ 
+    <apex:form >
+
+        <apex:pageBlock title="Accounts">  
+
+            <apex:pageBlockButtons >
+                <Apex:commandButton action="{!deleteAccounts}"
+                    value="Delete Selected Accounts"
+                    reRender="theTable,messages"
+                />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockTable value="{!accountsWrappers}" var="accountWrapper" id="theTable">
+                <apex:column >
+                    <apex:inputCheckbox value="{!accountWrapper.isSelected}" />
+                    </apex:column>
+                <apex:column value="{!accountWrapper.account.Name}"/>
+                <apex:column value="{!accountWrapper.account.Type}"/>
+                <apex:column value="{!accountWrapper.account.CreatedDate}"/>  
+            </apex:pageBlockTable>        
+
+        </apex:pageBlock>     
+    
+    </apex:form>  
+
+</apex:page>

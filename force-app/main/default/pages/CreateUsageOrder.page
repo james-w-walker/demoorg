@@ -1,0 +1,54 @@
+<apex:page docType="html-5.0" showHeader="true" sidebar="false" controller="CreateUsageOrderController">
+	
+    <apex:outputPanel id="messages"> 
+        <apex:pageMessages />
+    </apex:outputPanel>
+
+    <apex:form id="formid">
+
+        <apex:pageBlock title="Create Usage Summary Record" id="theTable">
+
+        
+
+       <apex:commandButton value="Save"   
+            action="{!CreateUsageSummaryRecordOrder}"
+            disabled="{!disableSave}"  
+            reRender="theTable,messages,summarytable"  />  
+
+        </apex:pageBlock> 
+
+    </apex:form>    
+
+
+
+    <apex:form id="summarytable">
+
+
+         <apex:pageBlock title="Usage Summaries">  
+
+            <apex:input title="amount" required="true" value="{!amount1}"> 
+
+                    <apex:actionSupport event="onclick" reRender="formId"/>
+
+                    </apex:input>
+
+            <apex:commandButton value="Select"   
+            action="{!selectsummary}"
+            reRender="theTable,messages,summarytable"/>
+       
+            <apex:pageBlockTable value="{!usageWrappers}" var="u" id="summarytable" columns="4">
+                <apex:column >
+                    <apex:inputCheckbox value="{!u.isSelected}"/>
+                    </apex:column>
+                
+                <apex:column value="{!u.summary.Name}"/>
+                <apex:column value="{!u.summary.Usage_Record_Quantity__c}"/>
+                <apex:column value="{!u.summary.Status__c}"/>  
+            </apex:pageBlockTable>        
+
+        </apex:pageBlock>       
+
+
+    </apex:form>
+
+</apex:page>

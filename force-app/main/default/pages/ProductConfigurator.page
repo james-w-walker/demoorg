@@ -1,0 +1,49 @@
+<apex:page showHeader="false" sidebar="false" controller="ProductConfiguratorController">
+	
+    <div>
+    <apex:form >
+
+          <!-- use a regular text input for the search bar: apex:inputtext 
+        Need a 'search' button which calls a class which passes SOQL 
+        to render the list differently-->
+        <apex:outputPanel >
+            <apex:inputText value="{!searchTerm}" id="theProductInput"/>
+            <apex:commandButton action="{!searchProducts}" value="Search!" reRender="theTable" />
+        </apex:outputPanel>
+    </apex:form>
+
+    </div>
+
+    <apex:form >
+        <apex:PageBlock >  
+            <apex:pageBlockSection columns="3">
+                
+                    <apex:inputField value="{!selectedAsset.Name}" />   
+                    <apex:inputField value="{!selectedAsset.Status}"/>
+                    <apex:inputText value="{!assetName}"/>
+                
+            </apex:pageBlockSection>  
+        </apex:PageBlock>
+
+    </apex:form>
+
+
+    <apex:form >
+        <apex:pageBlock title="Products">
+
+            <apex:pageBlockTable value="{!resultsProductWrappers}" var="ProductWrapper" id="theTable">
+                <apex:column value="{!ProductWrapper.Product.Name}"/>
+                <apex:column value="{!ProductWrapper.Product.ProductCode}"/>
+                <apex:column value="{!ProductWrapper.Product.Family}"/>  
+                <apex:column value="{!ProductWrapper.Product.isActive}"/>  
+            </apex:pageBlockTable> 
+
+        </apex:pageBlock> 
+
+    </apex:form>  
+
+
+
+
+
+</apex:page>

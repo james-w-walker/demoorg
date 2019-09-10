@@ -1,0 +1,49 @@
+<apex:page showHeader="true" sidebar="false" controller="CreateUsageRecordsController">
+	
+    <apex:outputPanel id="messages">
+        <apex:pageMessages />
+    </apex:outputPanel>
+
+    <apex:form id="formid">
+
+        <apex:pageBlock title="Create Usage Summary Record">
+
+            <apex:pageBlockTable value="{!usage}" var="u" id="theTable">
+
+                <apex:column headerValue="Usage Order">
+
+                    <apex:inputField value="{!usage.Order__c}"/>
+
+                </apex:column>   
+
+                <apex:column headerValue="Amount">
+
+                    <apex:inputField value="{!usage.Usage_Amount__c}">
+
+                    <apex:actionSupport event="onclick" reRender="formId"/>  
+
+                    </apex:inputField>
+
+                </apex:column>  
+
+                <apex:column headerValue="Usage Summary">
+
+                    <apex:inputField value="{!usage.Usage_Summary__c}" rendered="{!usage.Usage_Amount__c != null}"/>
+
+                </apex:column>
+            
+            </apex:pageBlockTable>
+
+        </apex:pageBlock> 
+
+        <apex:commandButton value="Save" 
+            action="{!CreateUsageSummaryRecord}"
+            reRender="theTable,messages,theOtherTable"  />
+
+    </apex:form>  
+
+
+
+
+
+</apex:page>

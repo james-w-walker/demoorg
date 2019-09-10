@@ -1,0 +1,54 @@
+<apex:page showHeader="true" sidebar="true" controller="UpdateAccountController">
+
+    <p>Hello, {!account.Name}..</p>
+
+    <apex:form >
+    
+        <apex:pageBlock title="MyAccount">
+
+            <apex:commandButton action="{!saveAccount}" 
+                value="!!!!SAVE!!!!"  
+         />
+
+            <apex:pageBlockSection title="my account details!" columns="1">
+
+                <apex:inputField value="{!account.name}"/>
+                <apex:inputField value="{!account.Type}"/>
+                <apex:outputField value="{!account.CreatedDate}"/>
+
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>   
+   
+    </apex:form>
+
+    <apex:form >
+    
+        <apex:pageBlock title="Create new Contact" >
+
+            <apex:commandButton action="{!createContact}" value="Create Contact" />
+
+            <apex:pageBlockSection title="Contact info" columns="1">
+
+                <apex:inputField value="{!contact.FirstName}"/>
+                <apex:inputField value="{!contact.LastName}"/>
+
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>   
+   
+    </apex:form>
+
+    <!-- <apex:relatedList list="{!account.contacts}" title="Contacts" /> -->
+
+</apex:page>
+
+
+
+
+
+<!-- Build a page that does the following: 
+    - Display table with accounts
+    - Allow user to create new accounts
+    - Allow user to select some number of accounts and delete them
+    - User can also chose any account to update - in this list, chose this one and populate a form with that data, and they can edit...-->

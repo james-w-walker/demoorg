@@ -1,0 +1,12 @@
+<apex:page sidebar="false" showHeader="false" standardController="account">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations!!!</h1>
+  This is your new Page: myFirstVfp
+  <!-- End Default Content REMOVE THIS -->
+  
+  <p>{!account.Name} - created by: {!account.CreatedBy.Name}</p>
+  
+  <apex:detail relatedList="false" title="true"/>
+  
+  <apex:relatedList list="contacts" />
+</apex:page>
